@@ -1,0 +1,124 @@
+.matrix-transpose-container {
+    display: flex;
+    flex-direction: column;
+    /* position: fixed; */
+    /* justify-content: center; */
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* Применение анимации ко всем элементам */
+
+
+.h1Transpose {
+    color: #fff;
+    margin-left: 10%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight:bolder;
+    font-size: 48px;
+}
+
+.matrix-transpose-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.matrix-transpose-block {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12%;
+    width: 50%;
+}
+
+.matrix-transpose-text1 {
+    margin-top: 5%;
+    color: #fff;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+    font-size: 120%;
+}
+
+.matrix-transpose-text2 {
+    margin-left: 12%;
+    color: #fff;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+    font-size: 120%;
+}
+
+.matrix-transpose-button {
+    padding: 1% 1%;
+    margin-left: 12%;
+    margin-top: 4%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 'lighter';
+    font-size: 120%;
+    background-color: #4285B4;
+    color: #fff;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    box-shadow: 0 1px 5px 0 rgba(11, 99, 246, 1);
+    transition: 0.5s;
+}
+.matrix-transpose-button:hover {
+    background-color: #1164B4;
+    cursor: pointer;
+    color: #c0c0c0;
+    transform: translate(0,-3px);
+    box-shadow: 0 5px 10px 0 rgba(11, 99, 246, 1);
+}
+
+.matrix-transpose-input {
+    width: 131%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-top: 3px solid #49678D;
+    border-bottom: 3px solid #49678D;
+    background-color: #444444;
+    font-size: 120%;
+    color: #c0c0c0;
+   
+}
+
+.matrix-transpose-textarea {
+    margin-left: 12%;
+    width: 50%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-top: 3px solid #49678D;
+    border-bottom: 3px solid #49678D;
+    background-color: #444444;
+    font-size: 120%;
+    color: #c0c0c0;
+   
+}
+
+.matrix-transpose-text-threads {
+    margin-left: 8%;
+    margin-top: 5%;
+    color: #fff;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+    font-size: 120%;
+}
+
+.matrix-transpose-input-threads {
+    margin-left: 8%;
+    width: 40%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border: 1px solid #49678D;
+    
+    font-size: 120%;
+    color: #c0c0c0;
+    background-color: #444444;
+}

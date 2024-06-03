@@ -1,0 +1,146 @@
+import React, { useState } from 'react';
+import './TrapezoidalAndSimpson.css';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
+import logoSVG from '../assets/logo.png';
+function Simpson() {
+
+    const [func, setFunc] = useState('');
+    const [start, setStart] = useState('');
+    const [stop, setStop] = useState('');
+    const [n, setN] = useState('');
+    const [responseData, setResponseData] = useState('');
+    
+
+    const handleFuncChange = (event) => {
+        setFunc(event.target.value);
+    };
+
+    const handleStartChange = (event) => {
+        setStart(event.target.value);
+    };
+
+    const handleStopChange = (event) => {
+        setStop(event.target.value);
+    };
+
+    const handleNChange = (event) => {
+        setN(event.target.value);
+    };
+
+    const sendDataToServer = async () => {
+        let userEmail = null;
+        if (localStorage.getItem('email')) {
+            userEmail = localStorage.getItem('email');
+        }
+
+        try {
+            const response = await fetch(
+                'http://26.108.230.233:8080/calculations/integrals/simpson',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        function: func,
+                        start: start,
+                        stop: stop,
+                        n: n,
+                        email: userEmail
+                    }), // Отправка данных на сервер
+                }
+            );
+
+            const data = await response.json(); // Преобразование ответа в JSON формат
+
+            setResponseData(data.result); // Установка полученного ответа в состояние responseData
+        } catch (error) {
+            console.error('Ошибка:', error);
+        } 
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        sendDataToServer();
+    };
+    const { t } = useTranslation();
+    return (
+        <div className="trapezoid-container">
+           <nav className="main-nav">                
+                    <div className='logo-container'>
+                                 <Link to="/" className="tools-button">
+                                 <img className="logoSVG" src={logoSVG} alt="Logo" />
+                                 </Link>
+                                 </div>
+             
+                             
+                                 <Link to="/calculations" className="tools-button">
+                                     {t('tools')}
+                                 </Link>
+                                 <Link to="/historypage" className="about-button">
+                                     {t('history')}
+                                 </Link>
+                                 <Link to="/chatroom" className="chat-button">
+                                     {t('chat')}
+                                 </Link>
+                            
+                                 
+                                 
+                                 <div className="startPageSelector">
+                                     <LanguageSelector />
+                                 </div>
+                                 
+                                 
+                             </nav>
+            <h1 className="trapHeader">Simpson Method</h1>
+            <form onSubmit={handleSubmit}>
+                <div>
+                <p className="trapText">Function:</p>
+                <input
+                    className="funcInput"
+                    value={func}
+                    onChange={handleFuncChange}
+                />
+                </div>
+                <div className="trap-subcontainer">
+                <div>
+                <p className="trapText1">Start:</p>
+                <input
+                    className="trapSubInput"            
+                    value={start}
+                    onChange={handleStartChange}
+                />
+                </div>
+                <div>
+                <p className="trapText1">Stop:</p>
+                <input
+                    className="trapSubInput"            
+                    value={stop}
+                    onChange={handleStopChange}
+                />
+                </div>
+                <div>
+                <p className="trapText1">Iterations:</p>
+                <input
+                    className="trapSubInput"            
+                    value={n}
+                    onChange={handleNChange}
+                />
+                </div>
+                </div>
+                <button type="submit" className="trapButton">Count</button>
+                
+            </form>
+            <textarea
+                    value={responseData}
+                    className="trapezoid-textarea"
+                    readOnly
+            />
+            </div>
+    );
+}
+
+export default Simpson;

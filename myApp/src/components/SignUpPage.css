@@ -1,0 +1,113 @@
+/* SignUpPage.css */
+
+.registration-page {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('../assets/background2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; */
+}
+
+form[type='formReg'] {
+    align-items: center;
+    margin-top: 5%;
+    width: 30%;
+    height: 55%;
+    border-top: 3px solid #49678D;
+    
+    text-align: center;
+    align-items: center;
+}
+
+::placeholder {
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+    color: #c0c0c0;
+    opacity: 0.6;
+    padding: 5px;
+}
+
+.signUpPageSubmit {
+    margin-top: 10%;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+    height: 13%;
+    
+    background-color: #ef7135;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    padding: 2% 4%;
+    background-color: #4285B4;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px 0 rgba(11, 99, 246, 1);
+    transition: 0.5s;
+}
+.signUpPageSubmit:hover{
+    background-color: #1164B4;
+    cursor: pointer;
+    color: #c0c0c0;
+    transform: translate(0,-3px);
+    box-shadow: 0 10px 20px 0 rgba(11, 99, 246, 1);
+}
+
+button:hover {
+    background-color: #ec530c;
+    color: #c0c0c0;
+    cursor: pointer;
+}
+
+input[type='signUpPageInput'] {
+    margin-top: 10%;
+    height: 10%;
+    width: 75%;
+    border-top: 3px solid #49678D;
+    border-bottom: 3px solid #49678D;
+    background-color: #444444;
+    font-size: 80%;
+    color: #c0c0c0;
+    
+}
+
+p[type='signUpPageP'] {
+    margin-top: 11%;
+    color: #fff;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+    font-size: 85%;
+}
+
+a[type='signUpPageRef'] {
+    color: #49678D;
+}
+
+a:hover[type='signUpPageRef'] {
+    color: #1164B4;
+    cursor: pointer;
+}
+
+input[type='signUpPagePassword'] {
+    margin-top: 10%;
+    height: 10%;
+    width: 75%;
+    border-top: 3px solid #49678D;
+    border-bottom: 3px solid #49678D;
+    background-color: #444444;
+    font-size: 80%;
+    color: #c0c0c0;
+    
+}

@@ -1,0 +1,11 @@
+.selector {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color:#fff;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+    
+}
+.selector:hover{
+    color: #49678D;
+}

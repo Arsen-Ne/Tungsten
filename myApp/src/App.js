@@ -1,0 +1,202 @@
+import React, { useState, useEffect } from 'react';
+import {
+    BrowserRouter as Router,
+    Link,
+    Routes,
+    Route,
+    useLocation,
+    useNavigate,
+} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './components/LanguageSelector';
+import SignInPage from './components/SignInPage';
+import SignUpPage from './components/SignUpPage';
+import Calculations from './components/Calculations';
+import MatrixTranspose from './components/MatrixTranspose';
+import MatrixMultiplication from './components/MatrixMultiplication';
+import MatrixAddition from './components/MatrixAddition';
+import MatrixSubtraction from './components/MatrixSubtraction';
+import ScalarMultiplication from './components/ScalarMultiplication';
+import ChatRoom from './components/ChatRoom';
+import Calculator from './components/Calculator';
+import Trapezoidal from './components/Trapezoidal';
+import Simpson from './components/Simpson';
+import Romberg from './components/Romberg';
+import Converter from './components/Converter';
+import VectorPage from './components/VectorPage';
+import VectorSecondPage from './components/VectorSecondPage';
+import VectorModule from './components/VectorModule';
+import Gauss from './components/Gauss';
+import Newton from './components/Newton';
+import HistoryPage from './components/HistoryPage';
+import './App.css';
+import logoSVG from './assets/logo.png';
+
+function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const username = localStorage.getItem('username');
+        if (username) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    return (
+        <Router>
+            <AppContent isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> 
+        </Router>
+    );
+}
+
+function AppContent({ isLoggedIn, setIsLoggedIn }) {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const isMainPage = location.pathname === '/';
+
+    const { t } = useTranslation();
+
+    const handleSignOut = () => {
+        
+        
+         
+        // отправка пост запроса на сервер
+        fetch('http://26.108.230.233:8080/authorization/signout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                email: localStorage.getItem('email')
+            }),
+        })
+            .then((response) => response.json())
+            .then(() => {
+                console.log('OK');  
+                localStorage.removeItem('username');
+                localStorage.removeItem('email');
+                setIsLoggedIn(false); 
+                navigate('/');
+            })
+            .catch((error) => {
+                console.error('Ошибка при отправке данных:', error);
+            });
+    };
+
+    return (
+        <div className='app-wrapper'>
+            <Routes>
+                <Route path="/signup" element={<SignUpPage />} />
+                
+                <Route path="/signin" element={<SignInPage setIsLoggedIn={setIsLoggedIn} />} />
+                <Route path="/calculations" element={<Calculations />} />
+                <Route path="/matrixtranspose" element={<MatrixTranspose />} />
+                <Route
+                    path="/matrixmultiplication"
+                    element={<MatrixMultiplication />}
+                />
+                <Route path="/matrixaddition" element={<MatrixAddition />} />
+                <Route
+                    path="/matrixsubtraction"
+                    element={<MatrixSubtraction />}
+                />
+                <Route
+                    path="/scalarmultiplication"
+                    element={<ScalarMultiplication />}
+                />
+                <Route path="/chatroom" element={<ChatRoom />} />
+                <Route path="/calculator" element={<Calculator />} />
+                <Route path="/trapezoidal" element={<Trapezoidal />} />
+                <Route path="/simpson" element={<Simpson />} />
+                <Route path="/romberg" element={<Romberg />} />
+                <Route path="/converter" element={<Converter />} />
+                <Route path="/vectorpage" element={<VectorPage />} />
+                <Route
+                    path="/vectorsecondpage"
+                    element={<VectorSecondPage />}
+                />
+                <Route path="/vectormodule" element={<VectorModule />} />
+                <Route path="/gauss" element={<Gauss />} />
+                <Route path="/newton" element={<Newton />} />
+                <Route path="/historypage" element={<HistoryPage />} />
+            </Routes>
+            
+            {isMainPage && (
+                <nav className="main-nav">
+                    
+                    <div className='logo-container'>
+                    <Link to="/" className="tools-button">
+                    <img className="logoSVG" src={logoSVG} alt="Logo" />
+                    </Link>
+                    </div>
+                    
+
+                
+                    <Link to="/calculations" className="tools-button">
+                        {t('tools')}
+                    </Link>
+                    <Link to="/historypage" className="about-button">
+                        {t('history')}
+                    </Link>
+                    <Link to="/chatroom" className="chat-button">
+                        {t('chat')}
+                    </Link>
+               
+                    {isLoggedIn ? (
+                        <button className="signup-button" onClick={handleSignOut}>
+                            {t('signout')}
+                        </button>
+                    ) : (
+                        <>
+                        <Link to="/signup" className="signup-button">
+                                {t('signup')}
+                            </Link>                           
+                        </>
+                    )}
+                    
+                    <div className="startPageSelector">
+                        <LanguageSelector />
+                    </div>
+                    
+                    
+                </nav>
+            )}
+        <div className='body-box'>
+            <div className='body-box-container'>
+
+                <div className='body-text'>
+                    {isMainPage && (<h1 style={{marginLeft: '12%', marginTop: '10%', fontFamily:'Courier New',
+                        fontWeight: 'bolder', color: '#fff', fontSize: '350%'
+                    }}>{t('mainlabel1')}<br/>{t('mainlabel2')}</h1>)}
+                </div>
+                <div className='btn-body'>
+                    {isMainPage && !isLoggedIn && (
+                        <div style={{marginTop: '8%'}}>
+                        <Link to="/signin" className="signin-button">
+                        {t('signin')}
+                        </Link>
+                        <Link to="/signup" className="signup2-button">
+                        {t('signup')}
+                        </Link>
+                        </div>
+                        
+                    )}
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        </div>
+    
+
+        
+    
+    );
+    
+}
+
+export default App;

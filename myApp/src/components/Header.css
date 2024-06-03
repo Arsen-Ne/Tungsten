@@ -1,0 +1,189 @@
+.App {
+    text-align: center;
+}
+
+
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* App.css */
+.main-nav {
+    display: flex;
+    align-items: center;
+    background-color: #333333;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+.body-box{
+    display: flex;
+    margin-top: 0p;
+    align-items: center;
+    background-color: #333333;
+    max-width: 1440px;
+    min-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+.body-box-container{
+    
+    align-items: center;
+  
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+
+}
+
+.body-text{
+    
+    padding-top: 5%;
+
+}
+
+.signup-button {
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 20%;
+   
+    font-size: 18px;
+}
+
+.signup-button:hover {
+    text-decoration: none;
+    color: #49678D;
+    border-color: #c0c0c0;
+ 
+}
+
+
+
+.signin-button {
+    font-family: 'Courier New', Courier, monospace;
+    
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    padding: 2% 4%;
+    background-color: #4285B4;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px 0 rgba(11, 99, 246, 1);
+    transition: 0.5s;
+    
+}
+.signup2-button {
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 20px;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    padding: 2% 4%;
+    background-color: #4285B4;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px 0 rgba(11, 99, 246, 1);
+    transition: 0.5s;
+}
+
+.signin-button:hover {
+    background-color: #1164B4;
+    cursor: pointer;
+    color: #c0c0c0;
+    transform: translate(0,-3px);
+    box-shadow: 0 10px 20px 0 rgba(11, 99, 246, 1);
+}
+.signup2-button:hover{
+    background-color: #1164B4;
+    cursor: pointer;
+    color: #c0c0c0;
+    transform: translate(0,-3px);
+    box-shadow: 0 10px 20px 0 rgba(11, 99, 246, 1);
+}
+
+.tools-button {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10%;
+  
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+}
+.chat-button {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10%;
+  
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+}
+.chat-button:hover {
+    font-size: 16px;
+    text-decoration: none;
+    color: #49678D;
+    
+}
+
+.tools-button:hover {
+
+    font-size: 16px;
+    text-decoration: none;
+    color: #49678D;
+}
+
+.about-button {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10%;
+
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
+}
+
+.about-button:hover {
+    font-size: 16px;
+    text-decoration: none;
+    color: #49678D;
+}
+
+.logoSVG {
+   width: 100px;
+   height: 100px;
+   margin-left: 5%;
+margin-bottom: 5px;
+
+}
+.logo-container{
+    margin-left: 5%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 10%;
+    height: 10%;
+}
+.startPageSelector {
+    color: gold;
+
+    padding-left: 5%;
+}
+
