@@ -1,0 +1,44 @@
+version: '3.6'
+
+services:
+  mysql:
+    image: mysql/mysql-server:latest
+    environment:
+      MYSQL_DATABASE: user_database
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_ROOT_PASSWORD: 123Tun
+    ports:
+      - "33006:3306"
+    volumes:
+      - /home/Docker/Volumes/Mysql/lib/mysql
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
+    networks:
+      - my-network
+  app:
+    image: my-springboot-app:latest
+    build:
+      context: ./Tungsten-backend
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:33006/user_database
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123Tun
+    ports:
+      - 8080:8080
+    networks:
+      - my-network
+    depends_on:
+      - mysql
+  app-ui:
+    image: my-react-app:latest
+    build: ./myApp-frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - app
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
