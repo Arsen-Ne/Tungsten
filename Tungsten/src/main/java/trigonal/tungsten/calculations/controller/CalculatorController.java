@@ -1,0 +1,62 @@
+package trigonal.tungsten.calculations.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import lombok.*;
+import trigonal.tungsten.calculations.operations.calculator.*;
+import trigonal.tungsten.history.service.CalculationHistoryService;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/calculations/calculator")
+public class CalculatorController {
+
+    @Autowired
+    private CalculationHistoryService calculationHistoryService;
+    
+    @PostMapping
+    public ResponseEntity<?> calculate(@RequestBody CalculatorRequest request) {
+
+        String tokens[] = FunctionParser.infixToRpn(request.getExpression());
+        double result = BasicCalculator.solve(tokens);
+
+        CalculatorResponse response = new CalculatorResponse();
+        response.setResult(result);
+        calculationHistoryService.saveCalculationToHistory("Arithmetics: Calculator", request.toString(), 
+            response.toString(), request.getEmail());
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Getter
+    @Setter
+    private static class CalculatorRequest {
+        String expression;
+        String email;
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "expression='" + expression + '\'' +
+                    '}';
+        }
+    }
+
+    @Getter
+    @Setter
+    private static class CalculatorResponse {
+        double result;
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "result=" + result +
+                    '}';
+        }
+    }
+}
